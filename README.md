@@ -6,7 +6,7 @@ Write a weather-forecasting application that takes geographic US latitude/longit
     * Retrieve weather data using this free weather service: API Web Service (https://www.weather.gov/documentation/services-web-api&sa=D&source=calendar&ust=1641768438693965&usg=AOvVaw3OWCV8Z2DjkIpuF6eXz_L2)
 * Your chosen tools will dictate your presentation method, but the key to this requirement is that the end-user receives the resulting forecast data. This could be done via a dynamic web page, command-line output, etc.
 ### How to Run
-The application may be executed by running `gradlew bootRun`.
+The application may be executed by running `python api.py`.
 
 ### How to Use
 The following endpoints are available to use:
