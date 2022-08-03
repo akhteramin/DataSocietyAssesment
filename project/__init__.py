@@ -12,6 +12,7 @@ def create_app():
 
     app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    app.config['RESTPLUS_MASK_SWAGGER'] = False
 
     db.init_app(app)
 
@@ -37,5 +38,8 @@ def create_app():
     # blueprint for non-auth parts of app
     from .weather import weather as weather_blueprint
     app.register_blueprint(weather_blueprint)
+
+    from .documented_endpoints import blueprint as documented_endpoints
+    app.register_blueprint(documented_endpoints)
 
     return app

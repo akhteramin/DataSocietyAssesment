@@ -42,7 +42,11 @@ The User has a JSON schema of:
   }
 }
 ```
-Without authentication the applction can not be accessed. However, due to time constraint, no API-end authentication has been implemented.
+Without authentication the application can not be accessed. However, due to time constraint, no API-end authentication has been implemented.
+
+##Swagger Access
+After running the application server, one will be able to access the swagger here:
+`http://localhost:5000/documented_api/doc`
 
 ## What to Implement
 
@@ -53,8 +57,8 @@ Present the “temperature” value for “Wednesday Night” at the input locat
 ## Delivery
 Along with the source code, include a README.md file in Markdown format which documents your solution and how to use it. Deliver the application via shared git repository (e.g. GitHub, BitBucket).
 
+
 ## Improvement Scope
-* Incorporation of swagger for accessing API-endpoints
 * Unit testing
 * Integration testing
 * Configure WSGI setup for nginx deployment
