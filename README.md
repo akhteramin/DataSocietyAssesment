@@ -6,9 +6,10 @@ Write a weather-forecasting application that takes geographic US latitude/longit
     * Retrieve weather data using this free weather service: API Web Service (https://www.weather.gov/documentation/services-web-api&sa=D&source=calendar&ust=1641768438693965&usg=AOvVaw3OWCV8Z2DjkIpuF6eXz_L2)
 * Your chosen tools will dictate your presentation method, but the key to this requirement is that the end-user receives the resulting forecast data. This could be done via a dynamic web page, command-line output, etc.
 ### How to Run
-
+* To install all required packages, please run this command:
+`pip3 install requirements.txt`
 * To run this application in development mode, one can run the following command:
-`python3 api.py`
+`flask run`
 * To run this application on an nginx server, we need to execute this following command:
 `gunicorn --workers 3 --bind 0.0.0.0:5000 wsgi:app`.
 
@@ -31,20 +32,17 @@ The User has a JSON schema of:
 {
   "type":"User",
   "properties": {
-    "useerId": {
-      "type": "string"
-    },
     "username": {
       "type": "string"
     },
     "password": {
-          "type": "string"
+      "type": "string"
     },
     
   }
 }
 ```
-For all endpoints that require an "id" in the URL, this is the "employeeId" field.
+Without authentication the applction can not be accessed. However, due to time constraint, no API-end authentication has been implemented.
 
 ## What to Implement
 
@@ -54,3 +52,9 @@ Present the “temperature” value for “Wednesday Night” at the input locat
 
 ## Delivery
 Along with the source code, include a README.md file in Markdown format which documents your solution and how to use it. Deliver the application via shared git repository (e.g. GitHub, BitBucket).
+
+## Improvement Scope
+* Incorporation of swagger for accessing API-endpoints
+* Unit testing
+* Integration testing
+* Configure WSGI setup for nginx deployment

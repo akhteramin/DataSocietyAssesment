@@ -1,0 +1,43 @@
+<!-- templates/home.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Welcome, {{ name }}!
+</h1>
+<h1 class="subtitle">
+ Please insert longitude and latitude to get weather forecast.
+</h1>
+
+  <div class="column is-6 is-offset-3">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+    {% endwith %}
+     <div class="box">
+        <form method="POST" action="/weather">
+
+            <div class="field">
+
+                <div class="control">
+                    Longitude: <input class="input is-large" type="longitude" name="longitude" placeholder="Insert Longitude" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+
+                <div class="control">
+                    Latitude: <input class="input is-large" type="latitude" name="latitude" placeholder="Insert Latitude">
+                </div>
+            </div>
+
+            <button class="button is-block is-info is-large is-fullwidth">Submit</button>
+        </form>
+     </div>
+  </div>
+
+{% endblock %}
