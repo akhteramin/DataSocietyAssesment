@@ -1,4 +1,3 @@
-from flask import request
 from flask_restplus import Namespace, Resource, fields
 import requests
 import json
@@ -24,38 +23,40 @@ class DataAPI(Resource):
 
                 finalResponse = json.dumps(contentForecast['properties']['periods'])
 
-            except requests.exceptions.Timeout:
-                return {"Message": "Request Timeout"}
+            except requests.exceptions.Timeout as e:
+                raise SystemExit(e)
             # Maybe set up for a retry, or continue in a retry loop
-            except requests.exceptions.TooManyRedirects:
+            except requests.exceptions.TooManyRedirects as e:
             # Tell the user their URL was bad and try a different one
-                return {"Status": "400", "Message": "Bad URL Request"}
+                raise SystemExit(e)
 
             except requests.exceptions.RequestException as e:
                 # catastrophic error. bail.
                 raise SystemExit(e)
 
-            except requests.exceptions.HTTPError as err:
-                raise SystemExit(err)
+            except requests.exceptions.HTTPError as e:
+                raise SystemExit(e)
 
             except KeyError as e:
-                return {"Status": "422", "Message": "Invalid Longitude and Latitude"}
+                raise SystemExit(e)
 
-        except requests.exceptions.Timeout:
+        except requests.exceptions.Timeout as e:
             # Maybe set up for a retry, or continue in a retry loop
-            return {"Message": "Request Timeout"}
+            raise SystemExit(e)
 
-        except requests.exceptions.TooManyRedirects:
+        except requests.exceptions.TooManyRedirects as e:
             # Tell the user their URL was bad and try a different one
-            return {"Status": "400", "Message": "Bad URL Request"}
+            raise SystemExit(e)
 
         except requests.exceptions.RequestException as e:
             # catastrophic error. bail.
             raise SystemExit(e)
-        except requests.exceptions.HTTPError as err:
-            raise SystemExit(err)
+
+        except requests.exceptions.HTTPError as e:
+            raise SystemExit(e)
+
         except KeyError as e:
-            return {"Status": "422", "Message": "Invalid Longitude and Latitude"}
+            raise SystemExit(e)
 
         return finalResponse
 

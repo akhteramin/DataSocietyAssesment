@@ -1,4 +1,4 @@
-from project.app import create_app as app
+from project import create_app
 
-if __name__ == "__main__":
-    app.run()
+application = create_app()
+
