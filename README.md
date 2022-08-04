@@ -16,38 +16,30 @@ Write a weather-forecasting application that takes geographic US latitude/longit
 ### How to Use
 The following endpoints are available to use:
 ```
-* CREATE
-    * HTTP Method: POST 
-    * URL: localhost:8080/user
-    * PAYLOAD: User
-    * RESPONSE: User
+
 * READ
     * HTTP Method: GET 
-    * URL: localhost:8080/weather/{longitude}/{latitude}
-    * RESPONSE: Forecast
+    * URL: http://localhost:5000/documented_api/weather_api/weather/48.7456/-97.034
+    * RESPONSE: Weather Forecast
 
 ```
-The User has a JSON schema of:
-```json
-{
-  "type":"User",
-  "properties": {
-    "username": {
-      "type": "string"
-    },
-    "password": {
-      "type": "string"
-    },
-    
-  }
-}
-```
+
 Without authentication the application can not be accessed. However, due to time constraint, no API-end authentication has been implemented.
+
+After running the project, the MVP of the weather forecast website can be accessed at this address: `http://localhost:5000/`
+
+Create account using login id and password. After creating the account, using the login credential users will be able to access the page wherein users are allowed to provide `longitude` and `latitude` to generate weather forecast for upcoming week. 
 
 ##Swagger Access
 After running the application server, one will be able to access the swagger here:
 `http://localhost:5000/documented_api/doc`
 
+Swagger interface will be accessible as long as the web application is running. 
+
+##Unit Test
+In this project, a minimal version of unit test has been incorporated within test folder. To run the unit test please run the following command in `test` directory:
+`python3 test.api.py`
+Note that before running the command, the main project need to be running as well.
 ## What to Implement
 
 ### Task 1
@@ -58,7 +50,9 @@ Present the “temperature” value for “Wednesday Night” at the input locat
 Along with the source code, include a README.md file in Markdown format which documents your solution and how to use it. Deliver the application via shared git repository (e.g. GitHub, BitBucket).
 
 
+
 ## Improvement Scope
-* Unit testing
-* Integration testing
-* Configure WSGI setup for nginx deployment
+* API level Authentication. (Token-based API access)
+* Access Control List for Web URL.
+* Weather Information should be presented in a more organized manner. More API could be used to make the user interaction interactive.
+* Should Have an Error message policy.

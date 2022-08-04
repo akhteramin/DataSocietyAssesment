@@ -10,28 +10,27 @@ namespace = Namespace('weather_api', 'Weather Related API')
 
 class DataAPI(Resource):
     def get(self, longitude = None, latitude = None):
-
+        # Initial API request to determine the Zone and the API endpoint for that particular Zone
         url = "https://api.weather.gov/points/"+longitude+","+latitude
         try:
             initialResponse = requests.get(url)
             forecastEndPointContent = initialResponse.json()
 
-
             try:
+                # On success API request for the particular zone identified in response of previous API call
                 responseForecast = requests.get(forecastEndPointContent['properties']['forecast'])
                 contentForecast = responseForecast.json()
 
+                # Retrieve the Weekly Forecast
                 finalResponse = json.dumps(contentForecast['properties']['periods'])
 
             except requests.exceptions.Timeout as e:
                 raise SystemExit(e)
-            # Maybe set up for a retry, or continue in a retry loop
+
             except requests.exceptions.TooManyRedirects as e:
-            # Tell the user their URL was bad and try a different one
                 raise SystemExit(e)
 
             except requests.exceptions.RequestException as e:
-                # catastrophic error. bail.
                 raise SystemExit(e)
 
             except requests.exceptions.HTTPError as e:
@@ -41,15 +40,12 @@ class DataAPI(Resource):
                 raise SystemExit(e)
 
         except requests.exceptions.Timeout as e:
-            # Maybe set up for a retry, or continue in a retry loop
             raise SystemExit(e)
 
         except requests.exceptions.TooManyRedirects as e:
-            # Tell the user their URL was bad and try a different one
             raise SystemExit(e)
 
         except requests.exceptions.RequestException as e:
-            # catastrophic error. bail.
             raise SystemExit(e)
 
         except requests.exceptions.HTTPError as e:
