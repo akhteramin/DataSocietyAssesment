@@ -7,30 +7,35 @@
   Weekly Weather Forecast!
 </h1>
   <div>
+      {% if forecastData["message"] %}
+            {{forecastData["message"]}}
+      {% else %}
+            Temperature : {{forecastData["Temperature"]}}
+      {% endif %}
 
-      <table border="1">
-        <thead>
-            <tr>
-                <th> Day </th>
-                <th> Temperature </th>
-                <th> Wind Speed </th>
-                <th> Weather Status </th>
-                <th> Forecast </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for data in forecastData %}
-            <tr>
+<!--      <table border="1">-->
+<!--        <thead>-->
+<!--            <tr>-->
+<!--                <th> Day </th>-->
+<!--                <th> Temperature </th>-->
+<!--                <th> Wind Speed </th>-->
+<!--                <th> Weather Status </th>-->
+<!--                <th> Forecast </th>-->
+<!--            </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--            {% for data in forecastData %}-->
+<!--            <tr>-->
 
-                <td>{{ data["name"] }}</td>
-                <td>{{ data["temperature"] }} {{data["temperatureUnit"]}}</td>
-                <td>{{ data["windSpeed"] }}</td>
-                <td><img src="{{ data['icon'] }}" alt="Girl in a jacket" width="150" height="160"> </td>
-                <td>{{ data["detailedForecast"] }}</td>
+<!--                <td>{{ data["name"] }}</td>-->
+<!--                <td>{{ data["temperature"] }} {{data["temperatureUnit"]}}</td>-->
+<!--                <td>{{ data["windSpeed"] }}</td>-->
+<!--                <td><img src="{{ data['icon'] }}" alt="Girl in a jacket" width="150" height="160"> </td>-->
+<!--                <td>{{ data["detailedForecast"] }}</td>-->
 
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<!--            </tr>-->
+<!--            {% endfor %}-->
+<!--        </tbody>-->
+<!--    </table>-->
   </div>
 {% endblock %}

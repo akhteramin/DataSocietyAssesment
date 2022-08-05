@@ -6,7 +6,11 @@ from flask_login import login_user, logout_user, login_required, current_user
 import requests
 import json
 
+from . import db
+
 from . import base_url
+from .models import WeatherReport
+
 
 weather = Blueprint('weather', __name__)
 
@@ -59,4 +63,27 @@ def forecast():
 
     # data = json.loads(forecastData)
 
-    return render_template('weather.html', forecastData=forecast_data)
+    WR = WeatherReport.query.all()
+    for report in WR:
+        print(report.temperature)
+
+    response_data = {}
+    for data in forecast_data:
+        # print(data)
+        if data['name'] == "Wednesday Night":
+            temperature = str(data['temperature']) + str(data['temperatureUnit'])
+            response_data = {'Temperature': temperature}
+
+            Wr = WeatherReport(longitude = longitude, latitude = latitude, day = data['name'], temperature= temperature)
+
+            db.session.add(Wr)
+            db.session.commit()
+
+
+    if 'Temperature' not in response_data:
+        response_data = {'message': 'Forecast about Wednesday Night Is Not Found.'}
+
+
+    return render_template('weather.html', forecastData=response_data)
+
+
