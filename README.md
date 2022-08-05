@@ -30,6 +30,28 @@ After running the project, the MVP of the weather forecast website can be access
 
 Create account using login id and password. After creating the account, using the login credential users will be able to access the page wherein users are allowed to provide `longitude` and `latitude` to generate weather forecast for upcoming week. 
 
+## How to create a table in sqlite from Flask
+The steps of table creation are as follows:
+1. First create a model. In this project we hav e created a model class in `models.py` titled `WeatherReport`.
+```buildoutcfg
+class WeatherReport(db.Model):
+    id = db.Column(db.Integer, primary_key=True)  # primary keys are required by SQLAlchemy
+    longitude = db.Column(db.String(10))
+    latitude = db.Column(db.String(10))
+    day = db.Column(db.String(30))
+    temperature = db.Column(db.String(10))
+``` 
+2. Run the command `flask shell`
+3. Now import the model class that represents that represents the table. For example, in this project we have a `WeatherReport` model, for which we want to create a table.
+Within flask shell, run these commands:
+
+`>>> from project.models import WeatherReport`
+
+`>>> from project import db`
+
+ `>>> db.create_all()`
+
+After running these the `WeatherReport` table is created in sqlite.
 ##Swagger Access
 After running the application server, one will be able to access the swagger here:
 `http://localhost:5000/documented_api/doc`
